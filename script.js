@@ -10,19 +10,19 @@
  * Update the output text as a user types in the textarea
  * HINT: Use the onkeydown function inside HTML
  */
-function updateText() {
+const updateText = () => {
     // CODE GOES HERE
     document.getElementById('text-output').innerText = document.getElementById('text-input').value
 }
 
 /**
  * Toggle the bold class for the output text
- * HINT: Use the onclick function insite HTML
+ * HINT: Use the onclick function inside HTML
  * HINT: Look into using this keyword
  * HINT: Use the classList property
  * HINT: Toggle .active class for the button
  */
-function makeBold(elem) {
+const makeBold = elem => {
     //CODE GOES HERE
     elem.classList.toggle('active')
     document.getElementById('text-output').classList.toggle('bold')
@@ -31,7 +31,7 @@ function makeBold(elem) {
 /**
  * Toggle the italic class for the output text
  */
-function makeItalic(elem) {
+const makeItalic = elem => {
     elem.classList.toggle('active')
     document.getElementById('text-output').classList.toggle('italic')
 }
@@ -42,7 +42,7 @@ function makeItalic(elem) {
  * HINT: Use the classList property
  * HINT: Use contains, remove, and add functions
  */
-function makeUnderline(elem) {
+const makeUnderline = elem => {
     //CODE GOES HERE
     elem.classList.toggle('active')
     document.getElementById('text-output').classList.toggle('underline')
@@ -50,35 +50,17 @@ function makeUnderline(elem) {
 
 /**
  * Toggle the style textAlign attribute
- * Toggle the active state for the align butttons
+ * Toggle the active state for the align buttons
  * HINT: Use the style property of the element
- * HINT: Make sure to untoggle the active state for all other align buttons
+ * HINT: Make sure to un-toggle the active state for all other align buttons
  */
-function alignText(elem, alignType) {
+const alignText = (elem, alignType) => {
     // CODE GOES HERE
-    elem.classList.toggle('active');
+    let alignButtons = document.getElementsByClassName('align');
+    Array.from(alignButtons).forEach(button => {
+        button.classList.remove('active')
+    })
+    document.getElementById('text-output').style.textAlign = alignType;
 
-    switch(alignType){
-        case 'left':
-            document.getElementById('right-align').classList.remove('active');
-            document.getElementById('center-align').classList.remove('active');
-            document.getElementById('text-output').classList.remove('text-right');
-            document.getElementById('text-output').classList.remove('text-center');
-            document.getElementById('text-output').classList.toggle('text-left');
-            break;
-        case 'center':
-            document.getElementById('left-align').classList.remove('active');
-            document.getElementById('right-align').classList.remove('active');
-            document.getElementById('text-output').classList.remove('text-left');
-            document.getElementById('text-output').classList.remove('text-right');
-            document.getElementById('text-output').classList.toggle('text-center');
-            break;
-        case 'right':
-            document.getElementById('left-align').classList.remove('active');
-            document.getElementById('center-align').classList.remove('active');
-            document.getElementById('text-output').classList.remove('text-left');
-            document.getElementById('text-output').classList.remove('text-center');
-            document.getElementById('text-output').classList.toggle('text-right');
-            break;
-    }
+    elem.classList.toggle('active');
 }
